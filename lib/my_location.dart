@@ -16,12 +16,11 @@ class MyLocation extends StatefulWidget {
 class _MyLocationState extends State<MyLocation> {
    LocationData _currentPosition;
    String _address;
-   GoogleMapController mapController;
-   Marker marker;
+   
   Location location = Location();
 
-   GoogleMapController _controller;
-  LatLng _initialcameraposition = LatLng(0.5937, 0.9629);
+   
+  
 
   @override
   void initState() {
@@ -31,17 +30,7 @@ class _MyLocationState extends State<MyLocation> {
 
   }
 
-  void _onMapCreated(GoogleMapController _cntlr)
-  {
-    _controller = _controller;
-    location.onLocationChanged.listen((l) {
-      _controller.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(l.latitude, l.longitude),zoom: 15),
-        ),
-      );
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,12 +88,12 @@ class _MyLocationState extends State<MyLocation> {
     }
 
     _currentPosition = await location.getLocation();
-    _initialcameraposition = LatLng(_currentPosition.latitude,_currentPosition.longitude);
+   
     location.onLocationChanged.listen((LocationData currentLocation) {
       print("${currentLocation.latitude} : ${currentLocation.longitude}");
       setState(() {
         _currentPosition = currentLocation;
-        _initialcameraposition = LatLng(_currentPosition.latitude,_currentPosition.longitude);
+       
 
         DateTime now = DateTime.now();
         
